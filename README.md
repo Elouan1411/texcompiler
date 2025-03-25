@@ -57,7 +57,7 @@ Pour utiliser `texcompiler` directement depuis **LaTeX Workshop** dans **VS Code
 
 Cette configuration permet d'exécuter texcompiler directement depuis VS Code et de recompiler automatiquement vos documents LaTeX à chaque enregistrement (Ctrl + S) grâce à LaTeX Workshop.
 
-### Commandes disponibles
+## Commandes disponibles
 
 Le script accepte les options suivantes :
 
