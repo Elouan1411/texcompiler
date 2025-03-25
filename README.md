@@ -10,16 +10,9 @@ Avant de pouvoir utiliser ce projet, vous devez avoir les outils suivants instal
 - `bibtex` (pour la gestion des bibliographies)
 - `make` (pour l'automatisation de l'installation et de la désinstallation)
 
-Sur une machine Ubuntu, vous pouvez installer les dépendances nécessaires avec les commandes suivantes :
-
-```bash
-sudo apt update
-sudo apt install texlive-base texlive-bibtex make
-```
-
 ## Installation
 
-Pour installer le script et le rendre exécutable dans votre répertoire `/usr/local/bin`, suivez ces étapes :
+Pour installer le script et le rendre exécutable n'importe où, suivez ces étapes :
 
 1. Clonez ce dépôt dans votre répertoire de travail.
 2. Ouvrez un terminal et naviguez jusqu'à votre répertoire de projet.
@@ -30,6 +23,39 @@ make install
 ```
 
 Cela va copier le fichier `texcompiler.sh` dans `/usr/local/bin/texcompiler`, lui attribuer les permissions d'exécution, et le rendre disponible en tant que commande globale.
+
+## Intégration avec LaTeX Workshop dans VS Code
+
+Pour utiliser `texcompiler` directement depuis **LaTeX Workshop** dans **VS Code**, vous devez modifier votre fichier de configuration `settings.json`.
+
+### Configuration de `LaTeX Workshop`
+
+1. **Ouvrez VS Code**.
+2. **Appuyez sur** `F1` et recherchez **"Open User Settings (JSON)"**.
+3. **Ajoutez les lignes suivantes dans `settings.json`** :
+
+```json
+"latex-workshop.latex.recipes": [
+    {
+        "name": "Compiler avec texcompiler",
+        "tools": ["texcompiler"]
+    }
+],
+
+"latex-workshop.latex.tools": [
+    {
+        "name": "texcompiler",
+        "command": "/usr/local/bin/texcompiler",
+        "args": [
+            "%DOCFILE%.tex"
+        ]
+    }
+],
+```
+
+4. **Enregistrez et redémarrez VS Code**.
+
+Cette configuration permet d'exécuter texcompiler directement depuis VS Code et de recompiler automatiquement vos documents LaTeX à chaque enregistrement (Ctrl + S) grâce à LaTeX Workshop.
 
 ### Commandes disponibles
 

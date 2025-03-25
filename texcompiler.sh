@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 print_help() {
     echo "Usage: $0 fichier.tex [OPTIONS]"
@@ -12,8 +12,16 @@ print_help() {
     exit 0
 }
 
+# TODO: proposer une compilation avec luatex
+
 if [ "$1" = "--help" ]; then
     print_help
+fi
+
+if [ "$1" = "--clear" ]; then
+    echo "Nettoyage des fichiers temporaires..."
+    rm -rf "$BUILDDIR"
+    exit 0
 fi
 
 if [ -z "$1" ]; then
@@ -46,19 +54,13 @@ while [ "$#" -gt 0 ]; do
     case "$1" in
         --double) DOUBLE_COMPILE=true ;;
         --clean) CLEAN=true ;;
-        --clear) CLEAR=true ;;
         --bib) BIBLIO=true ;;
-        --help) print_help ;;
         *) echo "Option inconnue : $1"; exit 1 ;;
     esac
     shift
 done
 
-if [ "$CLEAR" = true ]; then
-    echo "Nettoyage des fichiers temporaires..."
-    rm -rf "$BUILDDIR"
-    exit 0
-fi
+
 
 if [ "$CLEAN" = true ]; then
     echo "Nettoyage des fichiers temporaires..."
