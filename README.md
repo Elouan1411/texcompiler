@@ -96,15 +96,3 @@ make uninstall
 ```
 
 Cela supprimera le script de `/usr/local/bin`.
-
-## Fonctionnement du script
-
-Le script effectue les étapes suivantes lors de la compilation :
-
-1. Vérifie que le fichier `.tex` existe et a la bonne extension.
-2. Si l'option `--clean` ou `--clear` est choisie, les fichiers temporaires sont supprimés.
-3. Crée un répertoire temporaire `.build` pour stocker les fichiers compilés.
-4. Exécute `pdflatex` pour compiler le fichier `.tex`.
-5. Si l'option `--bib` est activée, le script exécutera `bibtex` pour gérer les bibliographies, puis effectuera deux compilations supplémentaires pour mettre à jour les références.
-6. Si l'option `--double` est activée, une seconde compilation de `pdflatex` est effectuée.
-7. Finalement, le PDF est déplacé à la racine du projet.
